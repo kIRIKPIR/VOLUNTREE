@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voluntree</title>
+    <br>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(6, 1fr); 
+            grid-gap: 10px;
+            width: 80%;
+            max-width: 1200px;
+        }
+        .button {
+            background-image: url(images/th.jpg);
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 130px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            padding: 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .button:hover {
+            background-color: rgba(0, 0, 0, 0.3);
+            transform: scale(1.05);
+        }
+
+        .button:focus {
+            outline: none;
+        }
+
+        body {
+            background-image: url('images/background.jpg');
+            background-size: cover;        
+            background-position: center;   
+            background-repeat: no-repeat;  
+            margin: 0;                     
+            height: 100vh;                  
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="grid-container">
+        <button id="second" class="button" data-value="Munka1">Munka1<br>munka ideje</button>
+        <button id="first" class="button" data-value="Munka2">Munka2<br> munka ideje</button>
+        <button id="third" class="button" data-value="Munka3">Munka3<br>munka ideje</button>
+        <button id="fourth" class="button" data-value="Munka4">Munka4<br>munka ideje</button>
+        <button id="fifth" class="button" data-value="Munka5">Munka5<br>munka ideje</button>
+        <button id="sixth" class="button" data-value="Munka6">Munka6<br> munka ideje</button>
+        <button id="seventh" class="button" data-value="Munka7">Munka7<br>munka ideje</button>
+        <button id="eighth" class="button" data-value="Munka8">Munka8<br>munka ideje</button>
+        
+    </div>
+    <script>
+        document.querySelectorAll('.button').forEach(function(button) {
+            button.addEventListener('click', function() {
+                
+                let selectedValue = button.getAttribute('data-value');
+
+                
+                window.location.href = 'join.html?selected=' + encodeURIComponent(selectedValue);
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+CREATE TABLE jobs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL, -- Munka neve
+    description TEXT NOT NULL, -- Munka leírása
+    image VARCHAR(255), -- Kép elérési útja
+    location VARCHAR(255) NOT NULL, -- Helyszín
+    date DATETIME NOT NULL, -- Időpont
+    job_id VARCHAR(20) UNIQUE NOT NULL, -- Egyedi azonosító
+    posted_by INT NOT NULL, -- Feltöltő felhasználó ID-ja
+    status ENUM('pending', 'approved', 'rejected') DEFAULT 'pending', -- Jóváhagyás állapota
+    FOREIGN KEY (posted_by) REFERENCES users(id) ON DELETE CASCADE
+);

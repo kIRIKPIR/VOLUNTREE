@@ -1,0 +1,8 @@
+CREATE TABLE applications (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    job_id INT NOT NULL, -- A jelentkezés melyik munkára vonatkozik
+    user_id INT NOT NULL, -- Jelentkező felhasználó ID-ja
+    applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Jelentkezés időpontja
+    FOREIGN KEY (job_id) REFERENCES jobs(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);

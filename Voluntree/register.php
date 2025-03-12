@@ -1,43 +1,33 @@
 <?php
-include 'db.php'; // Adatbázis kapcsolat
+session_start();
+require 'db.php'; // Adatbázis kapcsolat
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = trim($_POST["username"]);
-    $email = trim($_POST["email"]);
-    $password = $_POST["password"];
-    $confirm_password = $_POST["confirm_password"];
+    $username = trim($_POST['username']);
+    $email = trim($_POST['mail']);
+    $password = password_hash($_POST['pass'], PASSWORD_DEFAULT); // Jelszó titkosítása    
 
-    // Ellenőrizzük, hogy az email már létezik-e az adatbázisban
-    $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
-    $stmt->bind_param("s", $email);
+    // Ellenőrizzük, hogy az email vagy a felhasználónév már létezik-e
+    $check_sql = "SELECT id FROM users WHERE email = ? OR username = ?";
+    $stmt = $conn->prepare($check_sql);
+    $stmt->bind_param("ss", $email, $username);
     $stmt->execute();
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        echo "error: Az emailcímhez már tartozik egy felhasználói fiók.";
-        exit();
-    }
-
-    // Jelszavak egyezésének ellenőrzése
-    if ($password !== $confirm_password) {
-        echo "error: A két jelszó nem egyezik.";
-        exit();
-    }
-
-    // Jelszó titkosítása
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-    // Felhasználó beszúrása az adatbázisba
-    $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $username, $email, $hashed_password);
-
-    if ($stmt->execute()) {
-        echo "success: Sikeres regisztráció!";
+        echo "Hiba: Ez az email vagy felhasználónév már létezik!";
     } else {
-        echo "error: Hiba történt a regisztráció során.";
-    }
+        // Új felhasználó mentése az adatbázisba
+        $sql = "INSERT INTO users (username, email, password) 
+                VALUES (?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sss", $username, $email, $password);
 
-    $stmt->close();
-    $conn->close();
+        if ($stmt->execute()) {
+            echo "Sikeres regisztráció! Most már bejelentkezhetsz.";
+        } else {
+            echo "Hiba történt a regisztráció során.";
+        }
+    }
 }
 ?>

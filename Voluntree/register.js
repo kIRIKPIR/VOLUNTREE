@@ -9,13 +9,14 @@ document.getElementById("registerForm").addEventListener("submit", function(even
         body: formData
     })
     .then(response => response.text())
-    .then(data => {
-        if (data.startsWith("error:")) {
-            messageDiv.innerHTML = <p class="error">${data.substring(6)}</p>;
+    .then(data => { console.log(data)
+       /* if (data.startsWith("error:")) { console.log("error")
+            console.log(error); messageDiv.innerHTML = <p class="error">${data.substring(6)}</p>;
         } else if (data.startsWith("success:")) {
-            messageDiv.innerHTML = <p class="success">${data.substring(8)}</p>;
+           console.log("success"); messageDiv.innerHTML = <p class="success">${data.substring(8)}</p>;
             setTimeout(() => window.location.href = "login.html", 2000); // Átirányítás a login oldalra 2 mp után
-        }
+        }*/
+        window.location.href="login.html";
     })
-    .catch(error => console.error("Hiba:", error));
+    //.catch(error => console.error("Hiba:", error));
 });

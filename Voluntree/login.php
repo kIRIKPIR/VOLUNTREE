@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['username'] = $user['username'];
-            header("Location: home.php"); // Sikeres bejelentkezés után főoldalra dob
+            header("Location: home.html"); // Sikeres bejelentkezés után főoldalra dob
             exit();
         } else {
             echo "Hibás jelszó.";

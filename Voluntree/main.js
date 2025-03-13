@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
         button.addEventListener("click", function () {
             let jobId = this.getAttribute("data-job");
 
-            fetch("../actions/apply.php", {
+            fetch("apply.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded"

@@ -1,0 +1,23 @@
+header {
+    background-color: #2a9d8f;
+    color: white;
+    padding: 15px 20px;
+}
+
+header h1 {
+    text-align: center;
+    margin: 0;
+}
+
+nav {
+    text-align: center;
+    margin-top: 10px;
+}
+
+nav a {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+

@@ -1,0 +1,23 @@
+.my-applications {
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.job-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.08);
+}
+
+.job-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.job-content h3 {
+    margin-top: 0;
+    color: #2a9d8f;
+}
